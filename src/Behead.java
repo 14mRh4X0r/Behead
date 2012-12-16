@@ -3,7 +3,7 @@ import java.util.logging.Logger;
 
 public class Behead extends Plugin {
     public static final String  NAME    = Behead.class.getSimpleName();
-    public static final String  VERSION = "0.1.1";
+    public static final String  VERSION = "0.1.2";
     public static final String  AUTHOR  = "14mRh4X0r";
     public static final Logger  LOG     = Logger.getLogger("Minecraft.Behead");
     public static final Random  RANDOM  = new Random();
@@ -21,6 +21,7 @@ public class Behead extends Plugin {
                 NBTTagCompound comp = new NBTTagCompound("tag");
                 comp.add("SkullOwner", player.getName());
                 item.setDataTag(comp);
+                item.setDamage(3);
                 player.giveItemDrop(item);
             }
         }
