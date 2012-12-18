@@ -3,7 +3,7 @@ import java.util.logging.Logger;
 
 public class Behead extends Plugin {
     public static final String  NAME    = Behead.class.getSimpleName();
-    public static final String  VERSION = "0.1.2";
+    public static final String  VERSION = "0.2.0";
     public static final String  AUTHOR  = "14mRh4X0r";
     public static final Logger  LOG     = Logger.getLogger("Minecraft.Behead");
     public static final Random  RANDOM  = new Random();
@@ -16,7 +16,7 @@ public class Behead extends Plugin {
                 return;
             }
             Player player = (Player) living;
-            if (RANDOM.nextInt(100) + 1 <= PROPS.getInt("dropchance")) {
+            if (RANDOM.nextInt(100) + 1 <= PROPS.getInt("dropchance", 100)) {
                 Item item = new Item(Item.Type.Skull);
                 NBTTagCompound comp = new NBTTagCompound("tag");
                 comp.add("SkullOwner", player.getName());
@@ -49,5 +49,5 @@ public class Behead extends Plugin {
         etc.getLoader().removeListener(prl);
         LOG.info("Disabled.");
     }
-
 }
+// vim: et si sts=4 sw=4 tw=79:
