@@ -3,11 +3,11 @@ import java.util.logging.Logger;
 
 public class Behead extends Plugin {
     public static final String  NAME    = Behead.class.getSimpleName();
-    public static final String  VERSION = "0.2.0";
+    public static final String  VERSION = "0.3.0";
     public static final String  AUTHOR  = "14mRh4X0r";
     public static final Logger  LOG     = Logger.getLogger("Minecraft.Behead");
     public static final Random  RANDOM  = new Random();
-    public final PropertiesFile PROPS   = this.getPropertiesFile();
+    public PropertiesFile PROPS;
     public PluginRegisteredListener prl;
     public final PluginListener PL      = new PluginListener() {
         @Override
@@ -22,7 +22,7 @@ public class Behead extends Plugin {
                 comp.add("SkullOwner", player.getName());
                 item.setDataTag(comp);
                 item.setDamage(3);
-                player.giveItemDrop(item);
+                player.getInventory().addItem(item);
             }
         }
     };
@@ -39,6 +39,7 @@ public class Behead extends Plugin {
     }
 
     public void enable() {
+        PROPS = this.getPropertiesFile();
         prl = etc.getLoader().addListener(PluginLoader.Hook.DEATH,
                                           this.PL, this,
                                           PluginListener.Priority.MEDIUM);
